@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PieShop.Models
 {
-    public class OrderRepository: IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly AppDbContext _appDbContext;
         private readonly ShoppingCart _shoppingCart;
+
 
         public OrderRepository(AppDbContext appDbContext, ShoppingCart shoppingCart)
         {
@@ -29,6 +31,7 @@ namespace PieShop.Models
             {
                 var orderDetail = new OrderDetail()
                 {
+                    Order = order,
                     Amount = shoppingCartItem.Amount,
                     PieId = shoppingCartItem.Pie.PieId,
                     OrderId = order.OrderId,
