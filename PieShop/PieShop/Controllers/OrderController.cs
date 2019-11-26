@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PieShop.Models;
 
@@ -9,6 +10,7 @@ using PieShop.Models;
 
 namespace PieShop.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
@@ -19,7 +21,6 @@ namespace PieShop.Controllers
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
         }
-        // GET: /<controller>/
         public IActionResult Checkout()
         {
             return View();
